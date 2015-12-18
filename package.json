@@ -1,0 +1,31 @@
+{
+  "name": "signumd",
+  "version": "0.1.0",
+  "description": "The server for Signum Workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ID10T-Errors/signumd.git"
+  },
+  "keywords": [
+    "signum",
+    "server"
+  ],
+  "author": "ID10T Errors <admin@ctftoolkit.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ID10T-Errors/signumd/issues"
+  },
+  "homepage": "https://github.com/ID10T-Errors/signumd#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13"
+  }
+}
