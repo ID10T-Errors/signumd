@@ -5,6 +5,11 @@ var app = express()
 
 const errors = require('./errors')
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+})
+
 app.use(bodyParser.json())
 
 app.post('/run/:language', function (req, res, next) {
