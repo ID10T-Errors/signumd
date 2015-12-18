@@ -15,6 +15,7 @@ app.post('/run/:language', function (req, res, next) {
   } catch (e) {
     return next(new errors[400]('signumd does not support language ' + req.params.language))
   }
+  console.log(req.body)
   language.run(req.body.environment, req.body.code, res)
 })
 

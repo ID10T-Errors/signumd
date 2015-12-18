@@ -9,6 +9,7 @@ module.exports = new Language(function (environment, container, out) {
       args.push(variable + '=' + environment[variable])
     }
   }
+  console.log(args)
   args.push('signumc/signumd-runner:java')
   var child = spawn('docker', args)
   child.stdout.pipe(out)
