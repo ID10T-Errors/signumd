@@ -8,11 +8,13 @@ const errors = require('./errors')
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
 })
 
 app.use(bodyParser.json())
 
 app.post('/run/:language', function (req, res, next) {
+  console.log(req.body)
   var language;
   try {
     language = require('./languages/' + req.params.language)
@@ -20,7 +22,6 @@ app.post('/run/:language', function (req, res, next) {
   } catch (e) {
     return next(new errors[400]('signumd does not support language ' + req.params.language))
   }
-  console.log(req.body)
   language.run(req.body.environment, req.body.code, res)
 })
 
