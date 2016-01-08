@@ -20,7 +20,7 @@ module.exports = new Language(function (environment, container, out) {
     child.stderr.pipe(out)
     setTimeout(function () {
       exec('docker kill ' + container, function (err, stdout, stderr) {
-        if (err != null) return out.end(err)
+        if (err != null) return out.end(err.toString())
         if (stderr !== '') return out.end(stderr)
       })
     }, 5000)
