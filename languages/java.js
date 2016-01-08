@@ -14,4 +14,5 @@ module.exports = new Language(function (environment, container, out) {
   var child = spawn('docker', args)
   child.stdout.pipe(out)
   child.stderr.pipe(out)
+  setTimeout(child.kill, 5000)
 })
