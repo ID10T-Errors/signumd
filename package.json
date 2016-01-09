@@ -25,7 +25,8 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "dockerode": "^2.2.8",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "memory-streams": "^0.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
