@@ -10,7 +10,16 @@ module.exports = new Language(function (environment, container, out, onErr) {
       env.push(variable + '=' + environment[variable])
     }
   }
-  docker.createContainer({Image: 'signumc/signumd-runner:java', Cmd: '/app/run.sh', Tty: false, Env: env}, function (err, container) {
+  docker.createContainer({
+    Image: 'signumc/signumd-runner:java',
+    Cmd: '/app/run.sh',
+    Tty: false,
+    Env: env,
+    HostConfig: {
+      Memory: 10 * 1024 * 1024,
+      MemorySwap: -1
+    }
+  }, function (err, container) {
     if (err != null) return onErr(err)
     container.start(function (err, data) {
       if (err != null) return onErr(err)
