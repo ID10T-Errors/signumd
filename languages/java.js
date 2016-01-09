@@ -16,7 +16,7 @@ module.exports = new Language(function (environment, container, out, onErr) {
     Tty: false,
     Env: env,
     HostConfig: {
-      Memory: 10 * 1024 * 1024,
+      Memory: 50 * 1024 * 1024,
       MemorySwap: -1
     }
   }, function (err, container) {
