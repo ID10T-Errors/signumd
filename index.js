@@ -13,6 +13,7 @@ var bruteforce = new ExpressBrute(store)
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header("Content-Type", "text/text; charset=utf-8")
   next()
 })
 
@@ -20,7 +21,6 @@ app.use(bodyParser.json())
 
 app.post('/run/:language', bruteforce.prevent, function (req, res, next) {
   console.log(req.body)
-  res.header("Content-Type", "text/text; charset=utf-8");
   var language;
   try {
     language = require('./languages/' + req.params.language)
