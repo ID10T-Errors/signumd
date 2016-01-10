@@ -10,28 +10,31 @@ module.exports = new Language(function (environment, container, out, onErr) {
       env.push(variable + '=' + environment[variable].replace('\\', '\\\\').replace('\n', '\\n'))
     }
   }
-  docker.createContainer({
-    Image: 'signumc/signumd-runner:java',
-    Cmd: '/app/run.sh',
-    Tty: false,
-    Env: env,
-    HostConfig: {
-      Memory: 50 * 1024 * 1024,
-      MemorySwap: -1
-    }
-  }, function (err, container) {
+  docker.pull('signumc/signumd-runner:java', function (err, stream) {
     if (err != null) return onErr(err)
-    container.start(function (err, data) {
+    docker.createContainer({
+      Image: 'signumc/signumd-runner:java',
+      Cmd: '/app/run.sh',
+      Tty: false,
+      Env: env,
+      HostConfig: {
+        Memory: 50 * 1024 * 1024,
+          MemorySwap: -1
+      }
+    }, function (err, container) {
       if (err != null) return onErr(err)
-    })
-    container.attach({stream: true, stdout: true, stderr: true}, function (err, stream) {
-      if (err != null) return onErr(err)
-      stream.pipe(out)
-    })
-    setTimeout(function () {
-      container.kill({}, function (err) {
+      container.start(function (err, data) {
         if (err != null) return onErr(err)
       })
-    }, 5000)
+      container.attach({stream: true, stdout: true, stderr: true}, function (err, stream) {
+        if (err != null) return onErr(err)
+        stream.pipe(out)
+      })
+      setTimeout(function () {
+        container.kill({}, function (err) {
+          if (err != null) return onErr(err)
+        })
+      }, 5000)
+    })
   })
 })
