@@ -20,6 +20,7 @@ app.use(bodyParser.json())
 
 app.post('/run/:language', bruteforce.prevent, function (req, res, next) {
   console.log(req.body)
+  res.header("Content-Type", "text/text; charset=utf-8");
   var language;
   try {
     language = require('./languages/' + req.params.language)
