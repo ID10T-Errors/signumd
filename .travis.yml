@@ -3,4 +3,7 @@ services:
   - docker
 
 script:
-  - docker build .
+  - echo 'ENV NODE_ENV=development' >> Dockerfile
+  - echo 'ENTRYPOINT npm install && npm test' >> Dockerfile
+  - docker build -t signumd .
+  - docker run -v /var/run/docker.sock:/var/run/docker.sock -e NODE_ENVIRONMENT=development signumd
