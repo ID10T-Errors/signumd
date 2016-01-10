@@ -5,6 +5,11 @@ var app = express()
 
 const errors = require('./errors')
 
+var ExpressBrute = require('express-brute')
+ 
+var store = new ExpressBrute.MemoryStore() 
+var bruteforce = new ExpressBrute(store)
+
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
@@ -13,7 +18,7 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.json())
 
-app.post('/run/:language', function (req, res, next) {
+app.post('/run/:language', bruteforce.prevent, function (req, res, next) {
   console.log(req.body)
   var language;
   try {
