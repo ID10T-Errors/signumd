@@ -35,7 +35,7 @@ app.use(function (err, req, res, next) {
   if (!res.headersSent) {
     res.status(500)
   } else {
-    res.send('\nINTERNAL SERVER ERROR:\n')
+    res.write('\nINTERNAL SERVER ERROR:\n')
   }
   res.end(err.toString())
 })
