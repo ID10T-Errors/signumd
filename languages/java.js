@@ -28,7 +28,10 @@ module.exports = new Language(function (environment, container, out, onErr) {
       })
       container.attach({stream: true, stdout: true, stderr: true}, function (err, stream) {
         if (err != null) return onErr(err)
-        container.modem.demuxStream(stream, out, out);
+        container.modem.demuxStream(stream, out, out)
+        stream.on('end', function () {
+          out.end()
+        })
       })
       setTimeout(function () {
         container.kill({}, function (err) {
