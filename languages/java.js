@@ -7,7 +7,7 @@ module.exports = new Language(function (environment, container, out, onErr) {
   var env = []
   for (var variable in environment) {
     if (environment.hasOwnProperty(variable)) {
-      env.push(variable + '=' + environment[variable])
+      env.push(variable + '=' + environment[variable].replace('\\', '\\\\').replace('\n', '\\n'))
     }
   }
   docker.createContainer({
