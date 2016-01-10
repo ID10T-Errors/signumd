@@ -7,12 +7,12 @@ printenv | while read line; do
     FILENAME="${FILENAME[2]}"
     unset SECTIONS[0]
     printf "%s" "${SECTIONS[*]}" > "${FILENAME}"
-    sed -i "s/\\n/\n/g" "${FILENAME}"
-    sed -i "s/\\\\/\\/g" "${FILENAME}"
+    sed -i "s/\\\\n/\\n/g" "${FILENAME}"
+    sed -i "s/\\\\\\\\/\\\\/g" "${FILENAME}"
   fi
 done
 printf "%s" "$SIGNUM_CODE" > "$SIGNUM_CLASSNAME".java
-sed -i "s/\\n/\n/g" "$SIGNUM_CLASSNAME".java
-sed -i "s/\\\\/\\/g" "$SIGNUM_CLASSNAME".java
+sed -i "s/\\\\n/\\n/g" "$SIGNUM_CLASSNAME".java
+sed -i "s/\\\\\\\\/\\\\/g" "$SIGNUM_CLASSNAME".java
 javac "$SIGNUM_CLASSNAME".java
 java "$SIGNUM_CLASSNAME"
