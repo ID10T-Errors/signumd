@@ -12,5 +12,7 @@ printenv | while read line; do
   fi
 done
 printf "%s" "$SIGNUM_CODE" > "$SIGNUM_CLASSNAME".java
+sed -i "s/\\n/\n/g" "$SIGNUM_CLASSNAME".java
+sed -i "s/\\\\/\\/g" "$SIGNUM_CLASSNAME".java
 javac "$SIGNUM_CLASSNAME".java
 java "$SIGNUM_CLASSNAME"
