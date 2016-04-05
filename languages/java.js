@@ -10,8 +10,8 @@ module.exports = new Language(function (environment, container, out, onErr) {
       env.push(variable + '=' + environment[variable].replace('\\', '\\\\').replace('\n', '\\n'))
     }
   }
-  docker.pull('signumc/signumd-runner:java', function (err, stream) {
-    if (err != null) return onErr(err)
+  //docker.pull('signumc/signumd-runner:java', function (err, stream) {
+  //  if (err != null) return onErr(err)
     docker.createContainer({
       Image: 'signumc/signumd-runner:java',
       Cmd: '/app/run.sh',
@@ -39,5 +39,5 @@ module.exports = new Language(function (environment, container, out, onErr) {
         })
       }, 5000)
     })
-  })
+  //})
 })
