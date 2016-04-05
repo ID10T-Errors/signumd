@@ -1,3 +1,3 @@
-FROM cusspvz/node:4.2.0-onbuild
+FROM cusspvz/node:0.1.103-onbuild
 
 EXPOSE 8080
