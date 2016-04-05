@@ -34,10 +34,13 @@ app.post('/run/:language', bruteforce.prevent, function (req, res, next) {
 app.use(function (err, req, res, next) {
   if (!res.headersSent) {
     res.status(500)
-  } else {
+    res.end(err.toString())
+  } else if (!res.finished) {
     res.write('\nINTERNAL SERVER ERROR:\n')
+    res.end(err.toString())
+  } else {
+    console.log('\nINTERNAL SERVER ERROR:\n' + err.toString())
   }
-  res.end(err.toString())
 })
 
 app.listen(8080)
